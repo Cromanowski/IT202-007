@@ -21,6 +21,8 @@ function bePositive($arr) {
         $i = $i + 1;
     }
 
+
+    
 }
 echo "Problem 3: Be Positive<br>";
 ?>

@@ -16,6 +16,7 @@ function processArray($arr) {
         $i = $i + 1;
     }
     
+    
 
 }
 echo "Problem 1: Odd Output<br>";
