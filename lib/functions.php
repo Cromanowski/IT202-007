@@ -1,12 +1,6 @@
 <?php
-//TODO 1: require db.php
-require(__DIR__ . "/../../lib/functions.php");
-/** Safe Echo Function
- * Takes in a value and passes it through htmlspecialchars()
- * or
- * Takes an array, a key, and default value and will return the value from the array if the key exists or the default value.
- * Can pass a flag to determine if the value will immediately echo or just return so it can be set to a variable
- */
+require_once(__DIR__ . "/db.php");
+$BASE_PATH = '/Project/';//This is going to be a helper for redirecting to our base project path since it's nested in another folder
 function se($v, $k = null, $default = "", $isEcho = true) {
     if (is_array($v) && isset($k) && isset($v[$k])) {
         $returnValue = $v[$k];
@@ -31,35 +25,43 @@ function se($v, $k = null, $default = "", $isEcho = true) {
         return htmlspecialchars($returnValue, ENT_QUOTES);
     }
 }
-
 //TODO 2: filter helpers
-if(isset($POST[$email]) && isset($_POST["password"]) && isset($_POST["confirm"])){
-    $email = se($POST, "email", false);
-    $password = se($POST, "password", false);
-    $confirm = se($POST, "confirm", false);
+function sanitize_email($email = "") {
+    return filter_var(trim($email), FILTER_SANITIZE_EMAIL);
 }
-//TODO 3: User helpers
-if(empty($email)){
-    array_push($errors, "Email must be set");
+function is_valid_email($email = "") {
+    return filter_var(trim($email), FILTER_VALIDATE_EMAIL);
 }
-if(empty($password)){
-    array_push($errors, "Password must be set");
+//TODO 3: User Helpers
+function is_logged_in() {
+    return isset($_SESSION["user"]); //se($_SESSION, "user", false, false);
 }
-if(empty($confirm)){
-    array_push($errors, "Confirm password must be set");
+function has_role($role) {
+    if (is_logged_in() && isset($_SESSION["user"]["roles"])) {
+        foreach ($_SESSION["user"]["roles"] as $r) {
+            if ($r["name"] === $role) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
-if(strlen($password)<8){
-    array_push($errors, "Password must be 8 or more characters");
+function get_username() {
+    if (is_logged_in()) { //we need to check for login first because "user" key may not exist
+        return se($_SESSION["user"], "username", "", false);
+    }
+    return "";
 }
-if(strlen($password)>0 && $password -! $confirm){
-    array_push($errors, "Passwords do not match");
+function get_user_email() {
+    if (is_logged_in()) { //we need to check for login first because "user" key may not exist
+        return se($_SESSION["user"], "email", "", false);
+    }
+    return "";
 }
-if(count($errors)>0){
-    echo "<pre>" . var_export($errors, true) . "<pre>";
+function get_user_id() {
+    if (is_logged_in()) { //we need to check for login first because "user" key may not exist
+        return se($_SESSION["user"], "id", false, false);
+    }
+    return false;
 }
-else{
-    echo "Welcome, $email!";
-}
-
 //TODO 4: Flash Message Helpers
-?>
