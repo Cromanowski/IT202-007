@@ -1,5 +1,6 @@
 <?php
-require(__DIR__ . "/../../partials/nav.php"); ?>
+require(__DIR__ . "/../../partials/nav.php");
+require(__DIR__."/../../partials/flash.php"); ?>
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
@@ -30,18 +31,22 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     $errors = [];
     if (empty($email)) {
         array_push($errors, "Email must be set");
+        flash("Email must be set", "warning");
     }
     //sanitize
     $email = sanitize_email($email);
     //validate
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         array_push($errors, "Invalid email address");
+        flash("Invalid email address");
     }
     if (empty($password)) {
         array_push($errors, "Password must be set");
+        flash("Password must be set");
     }
     if (strlen($password) < 8) {
         array_push($errors, "Password must be 8 or more characters");
+        flash("Password must be more then 8 characters");
     }
     if (count($errors) > 0) {
         echo "<pre>" . var_export($errors, true) . "</pre>";
@@ -61,9 +66,11 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         $_SESSION["user"] = $user;
                     } else {
                         echo "Invalid password";
+                        flash("Email not found", "Danger");
                     }
                 } else {
                     echo "Invalid email";
+                    flash("Email not found", "Danger");
                 }
             }
         } catch (Exception $e) {
