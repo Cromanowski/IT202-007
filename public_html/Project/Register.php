@@ -8,6 +8,10 @@ require(__DIR__."/../../partials/flash.php");
         <input type="email" name="email" required />
     </div>
     <div>
+        <label for="username">Username</label>        
+        <input type="username" name="username" required />
+    </div>
+    <div>
         <label for="pw">Password</label>
         <input type="password" id="pw" name="password" required minlength="8" />
     </div>
@@ -29,6 +33,7 @@ require(__DIR__."/../../partials/flash.php");
 //TODO 2: add PHP Code
 if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"])) {
     $email = se($_POST, "email", "", false);
+    $username = se($_POST, "username", "", false);
     $password = se($_POST, "password", "", false);
     $confirm = se($_POST, "confirm", "", false);
     //TODO 3
@@ -45,6 +50,9 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     if (empty($password)) {
         array_push($errors, "Password must not be empty");
     }
+    //if(!preg_match('/[^a-z_\0-9]/i'), $username){
+    //    array_push($errors, "Username can only contain alphanumerical characters and _ or -")
+    //}
     if (empty($confirm)) {
         array_push($errors, "Confirm Password must not be empty");
     }
@@ -62,7 +70,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         $db = getDB();
         $stmt = $db->prepare("INSERT INTO Users (email, password) VALUES(:email, :password)");
         try {
-            $stmt->execute([":email" => $email, ":password" => $hash]);
+            $stmt->execute([":email" => $email, ":password" => $hash, ":username" =>$username]);
             echo "You've registered, yay...";
         } catch (Exception $e) {
             echo "There was a problem registering";
