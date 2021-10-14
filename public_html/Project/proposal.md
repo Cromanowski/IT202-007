@@ -1,11 +1,11 @@
 # Project: 
 
-# Project Name: (Which Project)
-## Project Summary: (Copy from proposal)
-## Github Link: (Prod Branch of Project Folder)
-## Project Board Link: 
-## Website Link: (Heroku Prod of Project folder)
-## Your Name:
+# Project Name: (Which Project) Arcade machine
+## Project Summary: (Copy from proposal) This project will create a simple Arcade with scoreboards and competitions based on the implemented game.
+## Github Link: (Prod Branch of Project Folder) https://github.com/Cromanowski/IT202-007/tree/prod/public_html/Project
+## Project Board Link: https://github.com/Cromanowski/IT202-007/projects/1
+## Website Link: (Heroku Prod of Project folder) https://dashboard.heroku.com/apps/cmr75-prod
+## Your Name: Charles Romanowski
 
 
 ### Line item / Feature template (use this for each bullet point)
@@ -20,6 +20,8 @@
     - Screenshots
       - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
         - Screenshot #1 description explaining what you're trying to show
+
+
 ### End Line item / Feature Template
 
 ### Proposal Checklist and Evidence
