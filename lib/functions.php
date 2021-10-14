@@ -36,8 +36,11 @@ function is_valid_email($email = "")
     return filter_var(trim($email), FILTER_VALIDATE_EMAIL);
 }
 //TODO 3: User Helpers
-function is_logged_in()
+function is_logged_in($redirect = false, $destination = "login.php")
 {
+    if ($redirect) {
+        die(header("Location: $destination"));
+    }
     return isset($_SESSION["user"]); //se($_SESSION, "user", false, false);
 }
 function has_role($role)
@@ -92,4 +95,26 @@ function getMessages()
         return $flashes;
     }
     return array();
+}
+//TODO generic helpers
+function reset_session()
+{
+    session_unset();
+    session_destroy();
+}
+function users_check_duplicate($errorInfo)
+{
+    if ($errorInfo[1] === 1062) {
+        //https://www.php.net/manual/en/function.preg-match.php
+        preg_match("/Users.(\w+)/", $errorInfo[2], $matches);
+        if (isset($matches[1])) {
+            flash("The chosen " . $matches[1] . " is not available.", "warning");
+        } else {
+            //TODO come up with a nice error message
+            flash("<pre>" . var_export($errorInfo, true) . "</pre>");
+        }
+    } else {
+        //TODO come up with a nice error message
+        flash("<pre>" . var_export($errorInfo, true) . "</pre>");
+    }
 }

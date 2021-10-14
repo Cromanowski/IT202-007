@@ -1,8 +1,7 @@
 <?php
-require(__DIR__."/../../lib/functions.php");
 session_start();
-session_unset();
-session_destroy();
-session_start();
-flash("Successfully logged out");
+require(__DIR__ . "/../../lib/functions.php");
+reset_session();
+
+flash("Successfully logged out", "success");
 header("Location: login.php");
