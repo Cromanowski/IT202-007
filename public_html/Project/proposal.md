@@ -28,6 +28,7 @@
 
 - Milestone 1
 - [ ] User will be able to register a new account
+
 - [ ] User will be able to login to their account (given they enter the correct credentials)
 - [ ] User will be able to logout
 - [ ] Basic security rules implemented
