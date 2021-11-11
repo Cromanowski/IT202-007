@@ -74,7 +74,6 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
             echo " You've registered, yay...";
         } catch (Exception $e) {
             echo "There was a problem registering";
-            echo "<pre>" . var_export($e, true) . "</pre>";
         }
     }
 }
