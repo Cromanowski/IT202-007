@@ -27,16 +27,15 @@
 ### Proposal Checklist and Evidence
 
 - Milestone 1
-- [ ] User will be able to register a new account
-
-- [ ] User will be able to login to their account (given they enter the correct credentials)
-- [ ] User will be able to logout
-- [ ] Basic security rules implemented
-- [ ] Basic Roles implemented
-- [ ] Site should have basic styles/theme applied; everything should be styled
-- [ ] Any output messages/errors should be “user friendly”
-- [ ] User will be able to see their profile
-- [ ] User will be able to edit their profile #24
+- [x] 10/7 User will be able to register a new account
+- [x] 10/7  User will be able to login to their account (given they enter the correct credentials)
+- [x] 10/7 User will be able to logout
+- [x] 11/2 Basic security rules implemented
+- [x] 10/28 Basic Roles implemented
+- [x] 11/2 Site should have basic styles/theme applied; everything should be styled
+- [x] 10/7 Any output messages/errors should be “user friendly”
+- [x] 10/14 User will be able to see their profile
+- [x] 10/14 User will be able to edit their profile #24
 
 - Milestone 2
 - Milestone 3
