@@ -44,6 +44,16 @@
 - [ ] Create functions that output the following scoreboards (this will be used later)
 
 - Milestone 3
+- [ ] Users will have points associated with their account.
+- [ ] Create a PointsHistory table (id, user_id, point_change, reason, created)
+- [ ] Competitions table should have the following columns (id, name, created, duration, expires (now + duration), current_reward, starting_reward, join_fee, current_participants, min_participants, paid_out (boolean), min_score, first_place_per, second_place_per, third_place_per, cost_to_create, created, modified)
+- [ ] User will be able to create a competition
+- [ ] Each new participant causes the Reward value to increase by at least 1 or 50% of the joining fee rounded up
+- [ ] Have a page where the User can see active competitions (not expired)
+- [ ] Will need an association table CompetitionParticipants (id, comp_id, user_id, created)
+- [ ] User can join active competitions 
+- [ ] Create function that calculates competition winners
+
 - Milestone 4
 ### Intructions
 #### Don't delete this
