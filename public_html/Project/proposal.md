@@ -39,8 +39,8 @@
 
 - Milestone 2
 - [X] 11/23 Pick a simple game to implement, anything that generates a score that’s more advanced than a simple random number generator (may build off of a sample from the site shared in class)  
-- [ ] The system will save the user’s score at the end of the game if the user is logged in
-- [ ] The user will be able to see their last 10 scores
+- [X] 11/27 The system will save the user’s score at the end of the game if the user is logged in
+- [] The user will be able to see their last 10 scores
 - [ ] Create functions that output the following scoreboards (this will be used later)
 
 - Milestone 3
