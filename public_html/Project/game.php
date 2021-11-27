@@ -123,6 +123,18 @@ require(__DIR__ . "/../../partials/nav.php");
       context.font = '24px Arial';
       context.textAlign = 'center';
       context.fillText('Game Over. Final Score: ' + score, canvas.width / 2, canvas.height / 2);
+      $.post("api/save_score.php", {
+                  score: score,
+                }, (resp, status, xhr) => {
+                    console.log(resp, status, xhr);
+                    let data = JSON.parse(resp);
+                    flash(data.message, "success");
+                    console.log("success");
+                },
+                 (xhr, status, error) => {
+                    console.log(xhr, status, error);
+                }
+                );
     }
     
     // Listen for keydown events
@@ -228,6 +240,7 @@ require(__DIR__ . "/../../partials/nav.php");
             enemies.splice(i, 1);
             score++;
             shooting = false;
+            console.log(score);
             // Make the game harder
             if (score % 10 === 0 && timeBetweenEnemies > 1000) {
               clearInterval(timeoutId);
