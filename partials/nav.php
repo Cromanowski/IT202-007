@@ -49,3 +49,6 @@ require_once(__DIR__ . "/../lib/functions.php");
         <?php endif; ?>
     </ul>
 </nav>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
