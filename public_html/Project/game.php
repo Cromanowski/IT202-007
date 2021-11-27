@@ -239,6 +239,7 @@ require(__DIR__ . "/../../partials/nav.php");
           if (isColliding(bullet, enemy)) {
             enemies.splice(i, 1);
             score++;
+            console.log(score);
             shooting = false;
             console.log(score);
             // Make the game harder
@@ -268,6 +269,7 @@ require(__DIR__ . "/../../partials/nav.php");
       // End or continue the game
       if (gameOver) {
         endGame();
+
       } else {
         window.requestAnimationFrame(draw);
       }
