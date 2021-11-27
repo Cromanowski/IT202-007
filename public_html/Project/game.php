@@ -241,6 +241,7 @@ require(__DIR__ . "/../../partials/nav.php");
             score++;
             console.log(score);
             shooting = false;
+            console.log(score);
             // Make the game harder
             if (score % 10 === 0 && timeBetweenEnemies > 1000) {
               clearInterval(timeoutId);
