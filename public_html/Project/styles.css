@@ -11,7 +11,7 @@ nav li a{
     font-size: 25px;
 }
 
-input{
+input, button{
         background-color: blueviolet;
 }
 
@@ -30,4 +30,23 @@ h1{
 
 .mb-3{
     padding-block: 1em;
+}
+
+table{
+    border:8px solid purple;
+    background-color: rebeccapurple;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul {
+    list-style: none;
+}
+
+table{
+    width: inherit;
+}
+
+tr{
+    font-size: 120%;
 }

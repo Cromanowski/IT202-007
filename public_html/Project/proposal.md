@@ -38,7 +38,22 @@
 - [x] 10/14 User will be able to edit their profile #24
 
 - Milestone 2
+- [X] 11/23 Pick a simple game to implement, anything that generates a score that’s more advanced than a simple random number generator (may build off of a sample from the site shared in class)  
+- [X] 11/27 The system will save the user’s score at the end of the game if the user is logged in
+- [] The user will be able to see their last 10 scores
+- [ ] Create functions that output the following scoreboards (this will be used later)
+
 - Milestone 3
+- [ ] Users will have points associated with their account.
+- [ ] Create a PointsHistory table (id, user_id, point_change, reason, created)
+- [ ] Competitions table should have the following columns (id, name, created, duration, expires (now + duration), current_reward, starting_reward, join_fee, current_participants, min_participants, paid_out (boolean), min_score, first_place_per, second_place_per, third_place_per, cost_to_create, created, modified)
+- [ ] User will be able to create a competition
+- [ ] Each new participant causes the Reward value to increase by at least 1 or 50% of the joining fee rounded up
+- [ ] Have a page where the User can see active competitions (not expired)
+- [ ] Will need an association table CompetitionParticipants (id, comp_id, user_id, created)
+- [ ] User can join active competitions 
+- [ ] Create function that calculates competition winners
+
 - Milestone 4
 ### Intructions
 #### Don't delete this
