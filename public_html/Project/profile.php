@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
+require_once(__DIR__ . "/../../partials/flash.php");
 if (!is_logged_in()) {
     die(header("Location: login.php"));
 }
@@ -143,5 +144,4 @@ $username = get_username();
     }
 </script>
 <?php
-require_once(__DIR__ . "/../../partials/flash.php");
-?>
+require_once(__DIR__ . "../user_score.php");
