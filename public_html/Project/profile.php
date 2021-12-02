@@ -144,4 +144,4 @@ $username = get_username();
     }
 </script>
 <?php
-require_once(__DIR__ . "user_score.php");
+require_once(__DIR__ . "/user_score.php");
