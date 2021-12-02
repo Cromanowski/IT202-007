@@ -37,11 +37,16 @@
 - [x] 10/14 User will be able to see their profile
 - [x] 10/14 User will be able to edit their profile #24
 
-- Milestone 2
-- [X] 11/23 Pick a simple game to implement, anything that generates a score that’s more advanced than a simple random number generator (may build off of a sample from the site shared in class)  
-- [X] 11/27 The system will save the user’s score at the end of the game if the user is logged in
-- [] The user will be able to see their last 10 scores
-- [ ] Create functions that output the following scoreboards (this will be used later)
+<table><tr><td>milestone 2</td></tr><tr><td><table><tr><td>F1 - Pick a simple game to implement, anything that generates a score that’s more advanced than a simple random number generator (may build off of a sample from the site shared in class)  </td></tr><tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/game.php](https://cmr75-prod.herokuapp.com/Project/game.php)</p></td></tr><tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/52](https://github.com/Cromanowski/IT202-007/pull/52)</p></td></tr><tr><td><table><tr><td>F1 - What game will you be doing?<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p>I will be doing an arcade shooter. I'm using the same one that I used in the html5 canvas homework for now.
+</td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F1 - Briefly describe it<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p>You have to shoot ships that come at you using projectiles. If you get hit or let a ship get past you, the game ends. Shooting a ship increases the score.</td></tr></td></tr></table></td></tr><table><tr><td>F2 - The user will be able to see their last 10 scores</td></tr><tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/profile.php](https://cmr75-prod.herokuapp.com/Project/profile.php)</p></td></tr><tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/55](https://github.com/Cromanowski/IT202-007/pull/55)</p></td></tr><tr><td><table><tr><td>F2 - Show on their profile page<tr><td>Status: completed</td></tr><tr><td><img width="100%" src="https://user-images.githubusercontent.com/90267406/144450045-2ebf7cc7-d0fc-41dd-8d09-1f93a37c55b8.png"><p>An image of profile.php is shown. It contains A table at the bottom with fields top 10 scores and most recent scores, sorted by score and date respectively.</td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F2 - Ordered by most recent<tr><td>Status: completed</td></tr><tr><td><img width="100%" src="https://user-images.githubusercontent.com/90267406/144450045-2ebf7cc7-d0fc-41dd-8d09-1f93a37c55b8.png"><p>An image of profile.php is shown. It contains A table at the bottom with fields top 10 scores and most recent scores, sorted by score and date respectively.</td></tr></td></tr></table></td></tr><table><tr><td>F3 - Feature 3</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F3 - Top 10 Weekly<tr><td>Status: completed</td></tr><tr><td><img width="100%" src="https://user-images.githubusercontent.com/90267406/144452206-a112fd45-308a-4c88-b61f-d19b329284e5.png"><p>get_top_10 is shown. It is a function that displays the top 10 of scores during a certain duration.</td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - Top 10 Monthly<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - Top 10 Lifetime<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - https://cmr75-prod.herokuapp.com/Project/score_table.php<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p></td></tr></td></tr></table></td></tr></td></tr></table>
 
 - Milestone 3
 - [ ] Users will have points associated with their account.
