@@ -6,6 +6,8 @@ if (!is_logged_in()) {
 }
 ?>
 <?php
+$points = get_user_points();
+echo("Points: " . $points);
 if (isset($_POST["save"])) {
     $email = se($_POST, "email", null, false);
     $username = se($_POST, "username", null, false);
