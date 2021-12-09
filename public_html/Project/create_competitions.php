@@ -83,7 +83,7 @@ $payout_options = ['34-33-33', '40-35-25', '50-30-20', '60-25-15', '70-20-10', '
             let cost = starting + join;
             $.post("api/change_points.php", {
                 points: cost * -1,
-                reason: "Created a competition"
+                reason: "Created competition"
                 }, (resp, status, xhr) => {
                     console.log(resp, status, xhr);
                     let data = JSON.parse(resp);
