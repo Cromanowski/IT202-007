@@ -60,6 +60,15 @@
 - [ ] Create function that calculates competition winners
 
 - Milestone 4
+- [ ] User can set their profile to be public or private (will need another column in Users table)
+- [ ] User will be able to see their competition history
+- [ ] User with the role of “admin” can edit a competition where paid_out = false
+- [ ] Add pagination to the Active Competitions view
+- [ ] Anywhere a username is displayed should be a link to that user’s profile
+- [ ] Viewing an active or expired competition should show the top 10 scoreboard related to that competition
+- [ ] Game should be fully implemented/complete by this point 
+- [ ] User’s score history will include pagination
+- [ ] Home page will have a weekly, monthly, and lifetime scoreboard
 ### Intructions
 #### Don't delete this
 1. Pick one project type
