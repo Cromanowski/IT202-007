@@ -135,6 +135,19 @@ require(__DIR__ . "/../../partials/nav.php");
                     console.log(xhr, status, error);
                 }
                 );
+      $.post("api/change_points.php", {
+                  points: score*5,
+                  reason: "Earned from game"
+                }, (resp, status, xhr) => {
+                    console.log(resp, status, xhr);
+                    let data = JSON.parse(resp);
+                    flash(data.message, "success");
+                    console.log("success");
+                },
+                 (xhr, status, error) => {
+                    console.log(xhr, status, error);
+                }
+                );
     }
     
     // Listen for keydown events
