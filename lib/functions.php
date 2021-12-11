@@ -293,8 +293,8 @@ function join_competition($comp_id, $user_id, $cost)
 function update_participants($comp_id)
 {
     $db = getDB();
-    $stmt = $db->prepare("UPDATE Competitions set current_participants = (SELECT IFNULL(COUNT(1),0) FROM UserComps WHERE comp_id = :cid)), 
-    reward = IF(join_cost > 0, reward + CEILING(join_fee * 0.5), reward) WHERE id = :cid");
+    $stmt = $db->prepare("UPDATE Competitions set current_participants = (SELECT IFNULL(COUNT(1),0) FROM UserComps WHERE comp_id = :cid), 
+    reward = IF(join_fee > 0, reward + CEILING(join_fee * 0.5), reward) WHERE id = :cid");
     try {
         $stmt->execute([":cid" => $comp_id]);
         return true;
@@ -363,7 +363,7 @@ function calc_winners()
     $db = getDB();
     elog("Starting winner calc");
     $calced_comps = [];
-    $stmt = $db->prepare("select c.id, c.comp_name, first_place_per, second_place_per, third_place_per, current_reward 
+    $stmt = $db->prepare("select c.id, c.comp_name, first_place_per, second_place_per, third_place_per, reward 
     from Competitions c 
     where expires <= CURRENT_TIMESTAMP() AND paid_out = 0 AND current_participants >= min_participants LIMIT 10");
     try {
@@ -426,7 +426,7 @@ function calc_winners()
     }
     //closing calced comps
     if (count($calced_comps) > 0) {
-        $query = "UPDATE Competitions set did_calc = 1 AND did_payout = 1 WHERE id in ";
+        $query = "UPDATE Competitions paid out = 1 WHERE id in ";
         $query = "(" . str_repeat("?,", count($calced_comps) - 1) . "?)";
         elog("Close query: $query");
         $stmt = $db->prepare($query);
@@ -441,7 +441,7 @@ function calc_winners()
         elog("No competitions to calc");
     }
     //close invalid comps
-    $stmt = $db->prepare("UPDATE Competitions set paid_out = 1 WHERE expires <= CURRENT_TIMESTAMP() AND current_participants < min_participants AND did_calc = 0");
+    $stmt = $db->prepare("UPDATE Competitions set paid_out = 1 WHERE expires <= CURRENT_TIMESTAMP() AND current_participants < min_participants");
     try {
         $stmt->execute();
         $rows = $stmt->rowCount();
@@ -450,6 +450,31 @@ function calc_winners()
         error_log("Closing invalid comps error: " . var_export($e, true));
     }
     elog("Done calc winners");
+}
+
+function get_top_scores_for_comp($comp_id, $limit)
+{
+    $db = getDB();
+    $stmt = $db->prepare("SELECT * FROM (SELECT s.user_id, s.score, s.created, a.id as account_id OVER (PARTITION BY s.user_id ORDER BY s.score desc) as `rank` FROM Scores s
+    JOIN UserComps uc on uc.user_id = s.user_id
+    JOIN Competitions c on uc.competition_id = c.id
+    JOIN Users a on a.user_id = s.user_id
+    WHERE c.id = :cid AND s.created BETWEEN uc.created AND c.expires
+    )as t where `rank` = 1 ORDER BY score desc LIMIT :limit");
+    $scores = [];
+    try {
+        $stmt->bindValue(":cid", $comp_id, PDO::PARAM_INT);
+        $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($r) {
+            $scores = $r;
+        }
+    } catch (PDOException $e) {
+        flash("There was a problem fetching scores, please try again later", "danger");
+        error_log("List competition scores error: " . var_export($e, true));
+    }
+    return $scores;
 }
 
 ?>
