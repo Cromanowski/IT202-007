@@ -6,7 +6,7 @@ $db = getDB();
 if (isset($_POST["join"])) {
     $user_id = get_user_id();
     $comp_id = se($_POST, "comp_id", 0, false);
-    $cost = se($_POST, "join_cost", 0, false);
+    $cost = se($_POST, "join_fee", 0, false);
     $balance = get_user_points();
     join_competition($comp_id, $user_id, $cost);
 }
@@ -56,11 +56,11 @@ try {
                             <?php else : ?>
                                 <form method="POST">
                                     <input type="hidden" name="comp_id" value="<?php se($row, 'id'); ?>" />
-                                    <input type="hidden" name="cost" value="<?php se($row, 'join_cost', 0); ?>" />
-                                    <input type="submit" name="join" class="btn btn-primary" value="Join (Cost: <?php se($row, "join_cost", 0) ?>)" />
+                                    <input type="hidden" name="cost" value="<?php se($row, 'join_fee', 0); ?>" />
+                                    <input type="submit" name="join" class="btn btn-primary" value="Join (Cost: <?php se($row, "join_fee", 0) ?>)" />
                                 </form>
                             <?php endif; ?>
-                            <a class="btn btn-secondary" href="view_competition.php?id=<?php se($row, 'id'); ?>">View</a>
+                            <a class="btn btn-secondary" href="view_competitions.php?id=<?php se($row, 'id'); ?>">View</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
