@@ -136,7 +136,7 @@ require(__DIR__ . "/../../partials/nav.php");
                 }
                 );
       $.post("api/change_points.php", {
-                  points: score/5,
+                  points: score*5,
                   reason: "Earned from game"
                 }, (resp, status, xhr) => {
                     console.log(resp, status, xhr);

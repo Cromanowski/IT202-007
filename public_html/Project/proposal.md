@@ -48,16 +48,524 @@
 
  [https://github.com/Cromanowski/IT202-007/pull/55](https://github.com/Cromanowski/IT202-007/pull/55)</p></td></tr><tr><td><table><tr><td>F2 - Show on their profile page<tr><td>Status: completed</td></tr><tr><td><img width="100%" src="https://user-images.githubusercontent.com/90267406/144450045-2ebf7cc7-d0fc-41dd-8d09-1f93a37c55b8.png"><p>An image of profile.php is shown. It contains A table at the bottom with fields top 10 scores and most recent scores, sorted by score and date respectively.</td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F2 - Ordered by most recent<tr><td>Status: completed</td></tr><tr><td><img width="100%" src="https://user-images.githubusercontent.com/90267406/144450045-2ebf7cc7-d0fc-41dd-8d09-1f93a37c55b8.png"><p>An image of profile.php is shown. It contains A table at the bottom with fields top 10 scores and most recent scores, sorted by score and date respectively.</td></tr></td></tr></table></td></tr><table><tr><td>F3 - Feature 3</td></tr><tr><td>Links:</td></tr><tr><td>PRs:</td></tr><tr><td><table><tr><td>F3 - Top 10 Weekly<tr><td>Status: completed</td></tr><tr><td><img width="100%" src="https://user-images.githubusercontent.com/90267406/144452206-a112fd45-308a-4c88-b61f-d19b329284e5.png"><p>get_top_10 is shown. It is a function that displays the top 10 of scores during a certain duration.</td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - Top 10 Monthly<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - Top 10 Lifetime<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p></td></tr></td></tr></table></td></tr><tr><td><table><tr><td>F3 - https://cmr75-prod.herokuapp.com/Project/score_table.php<tr><td>Status: completed</td></tr><tr><td><img width="100%" src=""><p></td></tr></td></tr></table></td></tr></td></tr></table>
 
-- Milestone 3
-- [ ] Users will have points associated with their account.
-- [ ] Create a PointsHistory table (id, user_id, point_change, reason, created)
-- [ ] Competitions table should have the following columns (id, name, created, duration, expires (now + duration), current_reward, starting_reward, join_fee, current_participants, min_participants, paid_out (boolean), min_score, first_place_per, second_place_per, third_place_per, cost_to_create, created, modified)
-- [ ] User will be able to create a competition
-- [ ] Each new participant causes the Reward value to increase by at least 1 or 50% of the joining fee rounded up
-- [ ] Have a page where the User can see active competitions (not expired)
-- [ ] Will need an association table CompetitionParticipants (id, comp_id, user_id, created)
-- [ ] User can join active competitions 
-- [ ] Create function that calculates competition winners
+
+<table>
+<tr><td>milestone 3</td></tr><tr><td>
+<table>
+<tr><td>F1 - Users will have points associated with their account. (2021-12-07)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/profile.php](https://cmr75-prod.herokuapp.com/Project/profile.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/63](https://github.com/Cromanowski/IT202-007/pull/63)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F1 - Alter the User table to include points with a default of 0.</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145660345-088818ae-20e7-468d-94ee-604eefc0a868.png">
+<p>Image shows user table, with added column points, with 2 accounts that have points.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F1 - This field will not be incremented/decremented directly, you must use the PointsHistory table to calculate it and set it each time the points change</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662121-30a0f509-c5ff-4f14-85fb-9d0749b5fe86.png">
+<p>$stmt = $db->prepare("UPDATE Users SET points = (SELECT ifnull(SUM(point_change),0) FROM Points WHERE user_id = :id) where id = :id");
+    $stmt->execute([":id" => $user_id]);</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F1 - Points should show on their profile page</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662280-dab601ee-601e-48c7-aa5e-8901af8f7fe2.png">
+<p>Shows the profile page with Points :7 displayed.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F2 - Create a PointsHistory table (id, user_id, point_change, reason, created) (2021-12-07)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/game.php](https://cmr75-prod.herokuapp.com/Project/game.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/63/files](https://github.com/Cromanowski/IT202-007/pull/63/files)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F2 - item 1</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662400-39238430-b3c5-45f5-a51f-fa011965044d.png">
+<p>The points table is shown with entries. It has the columns id, user_id, and reason</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F3 - Competitions table should have the following columns (id, name, created, duration, expires (now + duration), current_reward, starting_reward, join_fee, current_participants, min_participants, paid_out (boolean), min_score, first_place_per, second_place_per, third_place_per, cost_to_create, created, modified) #45 (2021-12-08)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:</td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/66](https://github.com/Cromanowski/IT202-007/pull/66)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F3 - </td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662501-70bffc3b-5f5b-4104-893e-93257f3b6a08.png">
+<p>The competitions table is shown with fields id, comp_name, duration, reward, starting_reward, join_fee, paid_out, min_score, first_place_per, second_place_per, third_place_per, created, expires and current_participants.
+
+</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F4 - User will be able to create a competition (2021-12-08)</td></tr>
+<tr><td>Status: incomplete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/create_competitions.php](https://cmr75-prod.herokuapp.com/Project/create_competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/66](https://github.com/Cromanowski/IT202-007/pull/66)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F4 - Competitions will start at 1 point (reward)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="">
+<p>reward int DEFAULT 1,
+Shows the default is 1 in the table.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - User sets a name for the competition</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662679-dde81cf9-f100-47a2-8a1e-97e1663f18dd.png">
+<p>The creation page is shown, which includes a title box.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - User determines % given for 1st, 2nd, and 3rd place winners</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662679-dde81cf9-f100-47a2-8a1e-97e1663f18dd.png">
+<p>The creation page is shown, which includes a drop-down menu to select the payout options.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - User determines if it’s free to join or the cost to join (min 0 for free)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662679-dde81cf9-f100-47a2-8a1e-97e1663f18dd.png">
+<p>The creation page is shown, which includes a Join Cost field.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - User determines the duration of the competition (in days)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662679-dde81cf9-f100-47a2-8a1e-97e1663f18dd.png">
+<p>The creation page is shown, which includes a Duration field in days.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - User can determine the minimum score to qualify (min 0)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662679-dde81cf9-f100-47a2-8a1e-97e1663f18dd.png">
+<p>The creation page is shown, which includes a Min. Score field.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - User determines minimum participants for payout (min 3)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662679-dde81cf9-f100-47a2-8a1e-97e1663f18dd.png">
+<p>The creation page is shown, which includes a Min. Participants Field.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - Show any user friendly error messages</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145662941-411e40e7-7331-4f47-92d6-5d3e6bd79e93.png">
+<p>An example of an error message is displayed.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - Show user friendly confirmation message that competition was created</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/ff0000/000000?text=incomplete"></td></tr>
+
+<tr><td>
+<img width="768px" src="">
+<p>This is not working for some reason</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - The cost to the creator of the competition will be (1 + starting reward value)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663188-02095bb3-ac0e-4a76-9d98-95c0efc6ba1a.png">
+<p>The cost of creation being set to 2 is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F5 - Each new participant causes the Reward value to increase by at least 1 or 50% of the joining fee rounded up (2021-12-10)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/join_competitions.php](https://cmr75-prod.herokuapp.com/Project/join_competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/77](https://github.com/Cromanowski/IT202-007/pull/77)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F5 - item 1</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663341-996a5def-5be8-4800-ad05-d106a724eaf5.png">
+<p>A screenshot of a function which updates the participants and reward value.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F6 - Have a page where the User can see active competitions (not expired) (2021-12-10)</td></tr>
+<tr><td>Status: incomplete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/join_competitions.php](https://cmr75-prod.herokuapp.com/Project/join_competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/77](https://github.com/Cromanowski/IT202-007/pull/77)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F6 - For this milestone limit the output to a maximum of 10</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/ff0000/000000?text=incomplete"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663405-d12715fa-9e08-474f-8d8a-29b03bfc9145.png">
+<p>A list of competitions is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F6 - Order the results by soonest to expire</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663405-d12715fa-9e08-474f-8d8a-29b03bfc9145.png">
+<p>The results are ordered by soonest to expire</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F7 - Will need an association table CompetitionParticipants (id, comp_id, user_id, created)  (2021-12-10)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/competitions.php](https://cmr75-prod.herokuapp.com/Project/competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/77](https://github.com/Cromanowski/IT202-007/pull/77)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F7 - Comp_id and user_id should be a composite unique key (user can only join a competition once)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663505-9880a242-17b7-436a-9432-61b176e31cda.png">
+<p>The sql that creates the table is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F8 - User can join active competitions (2021-12-10)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/join_competitions.php](https://cmr75-prod.herokuapp.com/Project/join_competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/77](https://github.com/Cromanowski/IT202-007/pull/77)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F8 - Creates an entry in CompetitionParticipants</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663571-d9852cd3-ea1e-4d10-95af-48ccb023e35f.png">
+<p>UserComps table is shown with entries.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F8 - Recalculate the Competitions.participants value based on the count of participants for this competition from the CompetitionParticipants table.</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663341-996a5def-5be8-4800-ad05-d106a724eaf5.png">
+<p>A function is shown which updates the participants value.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F8 - Update the Competitions.reward based on the # of participants and the appropriate math from the competition requirements above</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/808080/ffffff?text=pending"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663341-996a5def-5be8-4800-ad05-d106a724eaf5.png">
+<p>A function is shown which updates the reward value.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F9 - Create function that calculates competition winners (2021-12-10)</td></tr>
+<tr><td>Status: incomplete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/admin/admin.php](https://cmr75-prod.herokuapp.com/Project/admin/admin.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/77](https://github.com/Cromanowski/IT202-007/pull/77)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F9 - Get all expired and not paid_out competitions</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663733-78834f85-b3d8-43a5-8b45-5ed067b1444a.png">
+<p>A function that gets a certain amount of scores in a competition is shown. </p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F9 - For each competition Check that the participant count against the minimum required Get the top 3 winners Option 1</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/808080/ffffff?text=pending"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663813-162c7b9d-fae2-4cf7-9c7d-b995b2887b4f.png">
+<p>The function which calculates the competion winners is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F9 - Calculate the payout (reward * place_percent)</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/808080/ffffff?text=pending"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663870-18486bb7-dcb9-475b-a190-11ee39015c56.png">
+<p>The part of the function which calculates each users score is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F9 - Create entries for the Users in the PointsHistory table</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/ff0000/000000?text=incomplete"></td></tr>
+
+<tr><td>
+<img width="768px" src="">
+<p></p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F9 - Mark the competition as paid_out = true</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/808080/ffffff?text=pending"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/145663972-e56cf44b-79a3-4011-adbf-36bee27b6a53.png">
+<p>The query that updates paid_out is shown</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr></td></tr></table>
 
 - Milestone 4
 - [ ] User can set their profile to be public or private (will need another column in Users table)

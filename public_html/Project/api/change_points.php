@@ -15,9 +15,11 @@ else{
     $stmt = $db->prepare("INSERT INTO Points (user_id, point_change, reason) VALUES(:id, :point_change, :reason)");
     $stmt->execute([":point_change" => $points, ":id" => $user_id, ":reason" => $reason]);
     
-    //$stmt = $db->prepare("INSERT INTO Users (points) VALUES(:points)");
-    //$stmt->execute([ ":points"=> "SUM( point_change FROM Points WHERE user_id = Users(id)"]);
-    
     $stmt = $db->prepare("UPDATE Users SET points = (SELECT ifnull(SUM(point_change),0) FROM Points WHERE user_id = :id) where id = :id");
     $stmt->execute([":id" => $user_id]);
+    
+    $stmt = $db->prepare("SELECT points FROM Users WHERE user_id = :id");
+    $points = $stmt->execute([":id" => $user_id]);
+    $r = $stmt->fetch(PDO::FETCH_ASSOC);
+    $_SESSION["user"]["points"] = (int)se($r, "points", 0, false);
 }
