@@ -1,10 +1,8 @@
 <?php
+//requires functions.php
 //requires a duration to be set
-require_once(__DIR__ . "/../../partials/nav.php");
 if (!isset($duration)) {
     $duration = "day"; //choosing to default to day
-}
-else{
 }
 $results = get_top_10($duration);
 
@@ -50,7 +48,10 @@ switch ($duration) {
                             <tr>
                                 <td>
                                     <!--<a href="profile.php?id=<?php se($result, 'user_id'); ?>"><?php se($result, "username"); ?></a>-->
-                                    <?php se($result, "username"); ?>
+                                    <!--<?php se($result, "username"); ?>-->
+                                    <?php $user_id = se($result, "user_id", 0, false);
+                                    $username = se($result, "username", "", false);
+                                    include(__DIR__ . "/user_profile_link.php"); ?>
                                 </td>
                                 <td><?php se($result, "score"); ?></td>
                                 <td><?php se($result, "created"); ?></td>
@@ -62,41 +63,3 @@ switch ($duration) {
         </div>
     </div>
 </div>
-
-<?php
-        function button1() {
-            header("Refresh:0");
-            $duration = $_POST["day"];
-            echo $duration;
-        }
-        function button2() {
-            header("Refresh:0");
-            $duration = $_POST["week"];
-            echo $duration;
-        }
-        function button3() {
-            header("Refresh:0");
-            $duration = $_POST["month"];
-            echo $duration;
-        }
-        function button4() {
-            header("Refresh:0");
-            $duration = $_POST["lifetime"];
-            echo $duration;
-        }
-    ?>
-  
-    <form method="post">
-        <input type="submit" name="button1"
-                class="button" value="Day" />
-          
-        <input type="submit" name="button2"
-                class="button" value="Week" />
-        
-        <input type="submit" name="button3"
-                class="button" value="Month" />
-        
-        <input type="submit" name="button4"
-                class="button" value="Lifetime" />     
-
-    </form>
