@@ -10,6 +10,7 @@ if (isset($_POST["join"])) {
     join_competition($comp_id, $user_id, $cost);
 }
 $id = se($_GET, "id", -1, false);
+var_export($id);
 if ($id < 1) {
     flash("Invalid competition", "danger");
     redirect("list_competitions.php");
@@ -18,22 +19,20 @@ $per_page = 5;
 paginate("SELECT count(1) as total FROM Competitions WHERE expires > current_timestamp() AND paid_out < 1");
 //handle page load
 $stmt = $db->prepare("SELECT Competitions.id, comp_name, min_participants, current_participants, reward, duration, min_score, join_fee, expires,
-IF(comp_id is null, 0, 1) as joined,  CONCAT(first_place_per,'% - ', second_place_per, '% - ', third_place_per, '%') as place FROM Competitions
-LEFT JOIN (SELECT * FROM UserComps WHERE user_id = :uid) as uc ON uc.comp_id = Competitions.id WHERE expires > current_timestamp() AND paid_out < 1 ORDER BY duration desc");
+CONCAT(first_place_per,'% - ', second_place_per, '% - ', third_place_per, '%') as place FROM Competitions WHERE id = :cid ORDER BY duration desc");
 $row = [];
 $comp = "";
 try {
-    $stmt->execute([":uid" => get_user_id(), ":cid" => $id]);
+    $stmt->execute([":cid" => $id]);
     $r = $stmt->fetch();
     if ($r) {
         $row = $r;
-        $comp = se($r, "title", "N/A", false);
+        $comp = se($r, "title", "", false);
     }
 } catch (PDOException $e) {
     flash("There was a problem fetching competitions, please try again later", "danger");
     error_log("List competitions error: " . var_export($e, true));
 }
-$scores = get_top_scores_for_comp($id, 10);
 ?>
 <div class="container-fluid">
     <h1>View Competition: <?php se($comp); ?></h1>
@@ -72,8 +71,25 @@ $scores = get_top_scores_for_comp($id, 10);
         </tbody>
     </table>
     <?php
-    //$scores is defined above
     $title = $comp . " Top Scores";
-    include(__DIR__ . "/score_table.php");
+    $scores = get_top_scores_for_comp($id, 10);
     ?>
+    <div class="container-fluid">
+    <h1>Leaderboard: </h1>
+    <table class="table text-light">
+        <thead>
+            <th>User ID</th>
+            <th>Score</th>
+            <th>Created</th>
+            <th>Username</th>
+        </thead>
+        <?php foreach ($scores as $row) : ?>
+        <tbody>
+                <td><?php se($row, "user_id"); ?></td>
+                <td><?php se($row, "score"); ?></td>
+                <td><?php se($row, "created"); ?></td>
+                <td><?php se($row, "username"); ?></td>              
+        </tbody>
+        <?php endforeach; ?>
+    </table>
 </div>
