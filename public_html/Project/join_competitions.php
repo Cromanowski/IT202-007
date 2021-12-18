@@ -12,13 +12,29 @@ if (isset($_POST["join"])) {
 }
 //handle page load
 //TODO fix join
-$stmt = $db->prepare("SELECT Competitions.id, comp_name, min_participants, current_participants, reward, duration, min_score, join_fee, expires,
-IF(comp_id is null, 0, 1) as joined,  CONCAT(first_place_per,'% - ', second_place_per, '% - ', third_place_per, '%') as place FROM Competitions
-LEFT JOIN (SELECT * FROM UserComps WHERE user_id = :uid) as uc ON uc.comp_id = Competitions.id WHERE expires > current_timestamp() AND paid_out < 1 ORDER BY duration desc");
-/*$stmt = $db->prepare("SELECT BGD_Competitions.id, title, min_participants, current_participants, current_reward, expires, creator_id, min_score, join_cost, IF(competition_id is null, 0, 1) as joined,  CONCAT(first_place,'% - ', second_place, '% - ', third_place, '%') as place FROM BGD_Competitions
-JOIN BGD_Payout_Options on BGD_Payout_Options.id = BGD_Competitions.payout_option
-LEFT JOIN BGD_UserComps on BGD_UserComps.competition_id = BGD_Competitions.id WHERE user_id = :uid AND expires > current_timestamp() AND did_payout < 1 AND did_calc < 1 ORDER BY expires desc");*/
-$results = [];
+$per_page = 10;
+    $query = "SELECT count(1) as total FROM UserComps where user_id = :uid";
+    
+    paginate($query, [":uid"=>get_user_id()], $per_page);
+    $params = [":uid"=>get_user_id(), ":offset"=>$offset, ":count"=>$per_page];
+    
+    $stmt =$db->prepare("SELECT Competitions.id, comp_name, min_participants, current_participants, reward, duration, min_score, join_fee, expires,
+    IF(comp_id is null, 0, 1) as joined,  CONCAT(first_place_per,'% - ', second_place_per, '% - ', third_place_per, '%') as place FROM Competitions
+    LEFT JOIN (SELECT * FROM UserComps WHERE user_id = :uid) as uc ON uc.comp_id = Competitions.id WHERE expires > current_timestamp() AND paid_out < 1 
+    ORDER BY duration desc LIMIT :offset, :count");
+    
+    foreach ($params as $key => $value){
+        $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+        $stmt->bindValue($key, $value, $type);
+      }
+    $params = null;
+
+    $db = getDB();
+      
+    $stmt->execute($params);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 try {
     $stmt->execute([":uid" => get_user_id()]);
     $r = $stmt->fetchAll();
@@ -45,7 +61,7 @@ try {
             <?php if (count($results) > 0) : ?>
                 <?php foreach ($results as $row) : ?>
                     <tr>
-                        <td><?php se($row, "title"); ?><?php se($row, "comp_name"); ?></td>
+                        <td><?php se($row, "title"); ?></td>
                         <td><?php se($row, "current_participants"); ?>/<?php se($row, "min_participants"); ?></td>
                         <td><?php se($row, "current_reward"); ?><br>Payout: <?php se($row, "place", "-"); ?></td>
                         <td><?php se($row, "min_score"); ?></td>
@@ -72,3 +88,5 @@ try {
         </tbody>
     </table>
 </div>
+<?php
+require_once(__DIR__ . "/pagination.php");

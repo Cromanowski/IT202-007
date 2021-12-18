@@ -3,8 +3,47 @@
 </style>
 <?php
 $id = get_user_id();
-$results = get_best_scores($id, 10);
-$results2 = get_latest_scores($id, 10);
+$db = getDB();
+    $per_page = 10;
+    $query = "SELECT count(1) as total FROM Scores where id = :uid";
+    
+    paginate($query, [":uid"=>get_user_id()], $per_page);
+    $params = [":uid"=>get_user_id(), ":offset"=>$offset, ":count"=>$per_page];
+    
+    $stmt =$db->prepare("SELECT score, created from Scores where user_id = :uid ORDER BY score desc LIMIT :offset, :count");
+    
+    foreach ($params as $key => $value){
+        $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+        $stmt->bindValue($key, $value, $type);
+      }
+    $params = null;
+
+    $db = getDB();
+      
+    $stmt->execute($params);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    
+    $db = getDB();
+    $per_page = 10;
+    $query = "SELECT count(1) as total FROM Scores where id = :uid";
+    
+    paginate($query, [":uid"=>get_user_id()], $per_page);
+    $params = [":uid"=>get_user_id(), ":offset"=>$offset, ":count"=>$per_page];
+    
+    $stmt =$db->prepare("SELECT score, created from Scores where user_id = :uid ORDER BY created desc LIMIT :offset, :count");
+    
+    foreach ($params as $key => $value){
+        $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+        $stmt->bindValue($key, $value, $type);
+      }
+    $params = null;
+
+    $db = getDB();
+      
+    $stmt->execute($params);
+    $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <table>
     <tr>
