@@ -57,3 +57,8 @@ tr{
     padding-bottom: 10%;
     color: black;
 }
+
+#leaderboard{
+    background-color: transparent;
+    border-color: transparent;
+}

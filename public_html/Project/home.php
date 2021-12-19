@@ -77,5 +77,25 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <?php
-require("pagination.php")
+require("pagination.php");
 ?>
+<Table id = 'Leaderboard'>
+<tr>
+<td><?php  
+$duration = 'day';
+require("score_table.php");
+?> </td>
+<td><?php  
+$duration = 'week';
+require("score_table.php");
+?> </td>
+<td><?php  
+$duration = 'month';
+require("score_table.php");
+?> </td>
+<td><?php  
+$duration = 'lifetime';
+require("score_table.php");
+?> </td>
+</tr>
+</Table>
