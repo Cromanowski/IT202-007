@@ -567,16 +567,380 @@ Shows the default is 1 in the table.</p>
 </td>
 </tr></td></tr></table>
 
-- Milestone 4
-- [ ] User can set their profile to be public or private (will need another column in Users table)
-- [ ] User will be able to see their competition history
-- [ ] User with the role of “admin” can edit a competition where paid_out = false
-- [ ] Add pagination to the Active Competitions view
-- [ ] Anywhere a username is displayed should be a link to that user’s profile
-- [ ] Viewing an active or expired competition should show the top 10 scoreboard related to that competition
-- [ ] Game should be fully implemented/complete by this point 
-- [ ] User’s score history will include pagination
-- [ ] Home page will have a weekly, monthly, and lifetime scoreboard
+
+<table>
+<tr><td>milestone 4</td></tr><tr><td>
+<table>
+<tr><td>F1 - User can set their profile to be public or private (will need another column in Users table) (2021-12-15)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/home.php](https://cmr75-prod.herokuapp.com/Project/home.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/83/](https://github.com/Cromanowski/IT202-007/pull/83/)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F1 - If public, hide email address from other users</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146991523-eed1a826-9446-4a85-bfe0-3bdec48069f7.png">
+<p>An image of the visibility column is shown. Its hard to show but clicking on a profile that is private will redirect you.
+</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F2 - User will be able to see their competition history (2021-12-15)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/home.php](https://cmr75-prod.herokuapp.com/Project/home.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/85](https://github.com/Cromanowski/IT202-007/pull/85)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F2 - Limit to 10 results</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146993441-a16e7be8-fa3f-4030-b51b-e820fd98e463.png">
+<p>An image of a user's competitions history is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F2 - Paginate anything after 10</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146993631-60d88a48-121b-4de7-91b6-7cbafece3fa4.png">
+<p>The second page of the competitions history is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F2 - If no results, show the appropriate message</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146993899-9ef0451e-fbc0-4eed-b9b8-331edb1181d6.png">
+<p>The competitions table is shown with "No competitions found" displayed.
+</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F3 - User with the role of “admin” can edit a competition where paid_out = false  (2021-12-20)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/admin/edit_competitions.php](https://cmr75-prod.herokuapp.com/Project/admin/edit_competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/88](https://github.com/Cromanowski/IT202-007/pull/88)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F3 - They can adjust any of the regular form values</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146994415-36603f8b-1234-49c1-9a1a-ab43910ecf3b.png">
+<p>An image of the edit competitions page is shown, with the form values title, starting reward, min. score, min. participants, join cost, duration, and payout option are shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F3 - If the competition was expired they can update the duration to include extra time</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146994415-36603f8b-1234-49c1-9a1a-ab43910ecf3b.png">
+<p>Duration is one of the fields shown</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F4 - Add pagination to the Active Competitions view  (2021-12-17)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/join_competitions.php](https://cmr75-prod.herokuapp.com/Project/join_competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/86/files](https://github.com/Cromanowski/IT202-007/pull/86/files)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F4 - Show 10 competitions per page</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146995378-44c238f6-a3e9-4c02-844f-64dfb105cb13.png">
+<p>An image of the competitions list with the pagination bar is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - Paginate anything after 10</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146995378-44c238f6-a3e9-4c02-844f-64dfb105cb13.png">
+<p>Can't show this now because there are less than 10 competitions currently.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F4 - If no results, show the appropriate message</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146995858-2e5390be-d9a5-4502-aedc-e56d0dc9f704.png">
+<p>An image of the list competitions page with "No active competitions" is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F5 - Anywhere a username is displayed should be a link to that user’s profile (2021-12-15)</td></tr>
+<tr><td>Status: incomplete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/home.php](https://cmr75-prod.herokuapp.com/Project/home.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/83](https://github.com/Cromanowski/IT202-007/pull/83)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F5 - This includes all scoreboards</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/ff0000/000000?text=incomplete"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146996569-7de844b7-83a3-40cd-95a4-25f9f24df376.png">
+<p>These are added to the homepage but I forgot to add to all the scoreboards.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F5 - If the profile is private you can have the page just display “this profile is private” upon access</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146996569-7de844b7-83a3-40cd-95a4-25f9f24df376.png">
+<p>Clicking on a private profile will redirect you, but this is hard to show.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F6 - Viewing an active or expired competition should show the top 10 scoreboard related to that competition (2021-12-17)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/view_competitions.php](https://cmr75-prod.herokuapp.com/Project/view_competitions.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/86/files](https://github.com/Cromanowski/IT202-007/pull/86/files)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F6 - Viewing an active or expired competition should show the top 10 scoreboard related to that competition</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146997233-325fbaf8-4f87-4637-ad0f-3d92f3e277c4.png">
+<p>Shows the leaderboard for competition 36</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F7 - Game should be fully implemented/complete by this point (2021-12-10)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/game.php](https://cmr75-prod.herokuapp.com/Project/game.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/77/](https://github.com/Cromanowski/IT202-007/pull/77/)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F7 - Game should tell the player if they’re not logged in that their score will not be recorded.</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146998106-e9347759-425e-43eb-a979-f92e1da0a896.png">
+<p>There is no message, but the score is not recorded.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F8 - User’s score history will include pagination (2021-12-17)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/86/](https://github.com/Cromanowski/IT202-007/pull/86/)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/profile.php](https://cmr75-prod.herokuapp.com/Project/profile.php)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F8 - Show latest 10</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146998610-f7343ddf-3b63-4608-9c69-b0276e1c8ab8.png">
+<p>10 latest scores for example2 are shown</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F8 - Paginate after 10</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146998709-0a7d697c-6978-4520-8f29-3bc4913f4531.png">
+<p>Second page is shown</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F8 - Show appropriate message for no results</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/808080/ffffff?text=pending"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146998988-96f1d465-88bc-49b3-b7ac-99cf81a7f4ec.png">
+<p>Last page with "no scores available" shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<table>
+<tr><td>F9 - Home page will have a weekly, monthly, and lifetime scoreboard (2021-12-19)</td></tr>
+<tr><td>Status: complete</td></tr>
+<tr><td>Links:<p>
+
+ [https://cmr75-prod.herokuapp.com/Project/home.php](https://cmr75-prod.herokuapp.com/Project/home.php)</p></td></tr>
+<tr><td>PRs:<p>
+
+ [https://github.com/Cromanowski/IT202-007/pull/87/](https://github.com/Cromanowski/IT202-007/pull/87/)</p></td></tr>
+<tr><td>
+<table>
+<tr><td>F9 - Will also have a link to the game</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146999353-b1887a58-c6c4-4d64-af55-e5372819308c.png">
+<p>A link titled "Start playing!" is shown.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<table>
+<tr><td>F9 - Scoreboards will show username and points for the session</td></tr>
+<tr><td>Status: 
+<img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=completed"></td></tr>
+
+<tr><td>
+<img width="768px" src="https://user-images.githubusercontent.com/90267406/146999534-e19813ca-96f4-40fd-afa8-e3606c6a4995.png">
+<p>4 scoreboards for daily, weekly, monthly and all time are shown. They include username, points and timestamp.</p>
+</td></tr>
+
+</td>
+</tr>
+</table>
+</td>
+</tr></td></tr></table>
 ### Intructions
 #### Don't delete this
 1. Pick one project type
