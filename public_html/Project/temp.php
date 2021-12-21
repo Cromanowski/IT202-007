@@ -36,7 +36,6 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
-<h2 ><a href="<?php echo get_url ('game.php'); ?>">Start Playing!</a></h2>
 <div class="container-fluid">
     <h1>Competitions History</h1>
     <table class="table text-light">
@@ -78,25 +77,5 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <?php
-require("pagination.php");
+require("pagination.php")
 ?>
-<Table id = 'Leaderboard'>
-<tr>
-<td><?php  
-$duration = 'day';
-require("score_table.php");
-?> </td>
-<td><?php  
-$duration = 'week';
-require("score_table.php");
-?> </td>
-<td><?php  
-$duration = 'month';
-require("score_table.php");
-?> </td>
-<td><?php  
-$duration = 'lifetime';
-require("score_table.php");
-?> </td>
-</tr>
-</Table>
