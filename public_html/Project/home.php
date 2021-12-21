@@ -36,6 +36,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
+<h2 ><a href="<?php echo get_url ('game.php'); ?>">Start Playing!</a></h2>
 <div class="container-fluid">
     <h1>Competitions History</h1>
     <table class="table text-light">
