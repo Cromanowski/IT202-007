@@ -1,15 +1,12 @@
 <?php
-require_once(__DIR__ . "/../../partials/nav.php");
+require_once(__DIR__ . "../../../../partials/nav.php");
+if (!has_role("Admin")) {
+    flash("You don't have permission to view this page", "warning");
+    redirect('home.php');
+}
 is_logged_in(true);
 $db = getDB();
-//handle join
-if (isset($_POST["join"])) {
-    $user_id = get_user_id();
-    $comp_id = se($_POST, "comp_id", 0, false);
-    $cost = se($_POST, "join_fee", 0, false);
-    $balance = get_user_points();
-    join_competition($comp_id, $user_id, $cost);
-}
+
 //handle page load
 //TODO fix join
 $per_page = 10;
@@ -61,7 +58,7 @@ try {
             <?php if (count($results) > 0) : ?>
                 <?php foreach ($results as $row) : ?>
                     <tr>
-                        <td><?php se($row, "comp_name"); ?></td>
+                        <td><?php se($row, "comp_name"); ?> </td>
                         <td><?php se($row, "current_participants"); ?>/<?php se($row, "min_participants"); ?></td>
                         <td><?php se($row, "current_reward"); ?><br>Payout: <?php se($row, "place", "-"); ?></td>
                         <td><?php se($row, "min_score"); ?></td>
@@ -73,10 +70,9 @@ try {
                                 <form method="POST">
                                     <input type="hidden" name="comp_id" value="<?php se($row, 'id'); ?>" />
                                     <input type="hidden" name="cost" value="<?php se($row, 'join_fee', 0); ?>" />
-                                    <input type="submit" name="join" class="btn btn-primary" value="Join (Cost: <?php se($row, "join_fee", 0) ?>)" />
                                 </form>
                             <?php endif; ?>
-                            <a class="btn btn-secondary" href="view_competitions.php?id=<?php se($row, 'id'); ?>">View</a>
+                            <a class="btn btn-secondary" href="edit_competitions.php?id=<?php se($row, 'id'); ?>">Edit</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -89,4 +85,4 @@ try {
     </table>
 </div>
 <?php
-require_once(__DIR__ . "/pagination.php");
+require_once(__DIR__ . "../../pagination.php");
